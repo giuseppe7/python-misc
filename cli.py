@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import argparse
 import logging
 import sys
@@ -14,7 +15,12 @@ def main():
     log_format = '[%(asctime)s] [%(levelname)s] %(message)s'
     log_datefmt = '%d/%b/%Y:%H:%M:%S %z'
     log_level = args.log_level.upper()
-    logging.basicConfig(format=log_format, datefmt=log_datefmt, level=log_level)
+    log_level_num = getattr(logging, log_level.upper(), logging.INFO)
+    logging.basicConfig(
+        format=log_format,
+        datefmt=log_datefmt,
+        level=log_level_num
+    )
 
     logging.debug('Starting main().')
     parser.print_help()
